@@ -9,6 +9,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.button-container{
+    padding: 1rem;
+}
+
+.button-container button{
+    padding: 10px;
+    font-size: 18px;
+}
+
+#start{
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+#start:hover{
+    background-color: rgb(53, 201, 53);
+}
+
+#start:active{
+    background-color: green;
+}
+
+#stop{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+#stop:hover{
+    background-color: rgb(110, 22, 22);
+}
+
+#stop:active{
+    background-color: red;
 }
 
 .slider{

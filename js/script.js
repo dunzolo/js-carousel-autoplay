@@ -40,54 +40,70 @@ circles[itemActive].classList.add('active');
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
 
-next.addEventListener('click', function(){
- 
-    if(itemActive == imagesArray.length - 1)
-    {
-        removeClassActive(itemActive);
-        itemActive = 0;
-        addClassActive(itemActive);
-    }
-    else{
-        removeClassActive(itemActive);
-        itemActive++;
-        addClassActive(itemActive);
-    }
+const start_btn = document.getElementById('start');
+const stop_btn = document.getElementById('stop');
+
+let loop;
+
+loopImages();
+
+start_btn.addEventListener('click', function(){
+    loopImages();
 });
 
-prev.addEventListener('click', function(){
 
-    if(itemActive == 0)
-    {
-        removeClassActive(itemActive);
-        itemActive = imagesArray.length - 1;
-        addClassActive(itemActive);
-    }
-    else{
-        removeClassActive(itemActive);
-        itemActive--;
-        addClassActive(itemActive);
-    }
+stop_btn.addEventListener('click', function(){
+    clearInterval(loop);
 });
-
 
 //inizio timing function
-
-setInterval(function(){
-
-    if(itemActive == imagesArray.length - 1)
-    {
-        removeClassActive(itemActive);
-        itemActive = 0;
-        addClassActive(itemActive);
-    }
-    else{
-        removeClassActive(itemActive);
-        itemActive++;
-        addClassActive(itemActive);
-    }
-
-}, 3000)
+function loopImages(){
+    loop = setInterval(function(){
+    
+        if(itemActive == imagesArray.length - 1)
+        {
+            removeClassActive(itemActive);
+            itemActive = 0;
+            addClassActive(itemActive);
+        }
+        else{
+            removeClassActive(itemActive);
+            itemActive++;
+            addClassActive(itemActive);
+        }
+    
+        next.addEventListener('click', function(){
+     
+            if(itemActive == imagesArray.length - 1)
+            {
+                removeClassActive(itemActive);
+                itemActive = 0;
+                addClassActive(itemActive);
+            }
+            else{
+                removeClassActive(itemActive);
+                itemActive++;
+                addClassActive(itemActive);
+            }
+        });
+        
+        prev.addEventListener('click', function(){
+        
+            if(itemActive == 0)
+            {
+                removeClassActive(itemActive);
+                itemActive = imagesArray.length - 1;
+                addClassActive(itemActive);
+            }
+            else{
+                removeClassActive(itemActive);
+                itemActive--;
+                addClassActive(itemActive);
+            }
+        });
+    }, 3000)
+    
+}
 
 function removeClassActive(itemActive){
     items[itemActive].classList.remove('active');
