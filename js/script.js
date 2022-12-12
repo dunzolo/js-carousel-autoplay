@@ -21,8 +21,6 @@ const itemsSlider = document.querySelector('.item-slider');
 itemsSlider.innerHTML += itemsContent;
 
 //4 - Prendiamo la prima immagine dell'array e la rendiamo attiva
-//const items = document.querySelector('.item'); //ALTERNATIVA
-
 //usando getElementsByClassName mi creo un array di item
 const items = document.getElementsByClassName('item');
 
@@ -46,25 +44,14 @@ next.addEventListener('click', function(){
  
     if(itemActive == imagesArray.length - 1)
     {
-        items[itemActive].classList.remove('active');
-        circles[itemActive].classList.remove('active');
-        
+        removeClassActive(itemActive);
         itemActive = 0;
-
-        items[itemActive].classList.add('active');
-        circles[itemActive].classList.add('active');
+        addClassActive(itemActive);
     }
     else{
-        // rimuovo la classe active dagli elementi attualmente visibili
-        items[itemActive].classList.remove('active');
-        circles[itemActive].classList.remove('active');
-
-        // eseguo l'incremento
+        removeClassActive(itemActive);
         itemActive++;
-        
-        // aggiungo la classe active all'elemento successivo
-        items[itemActive].classList.add('active');
-        circles[itemActive].classList.add('active');
+        addClassActive(itemActive);
     }
 });
 
@@ -72,24 +59,43 @@ prev.addEventListener('click', function(){
 
     if(itemActive == 0)
     {
-        items[itemActive].classList.remove('active');
-        circles[itemActive].classList.remove('active')
+        removeClassActive(itemActive);
         itemActive = imagesArray.length - 1;
-        items[itemActive].classList.add('active');
-        circles[itemActive].classList.add('active');
+        addClassActive(itemActive);
     }
     else{
-        // rimuovo la classe active dagli elementi attualmente visibili
-        items[itemActive].classList.remove('active');
-        circles[itemActive].classList.remove('active');
-
-        // eseguo decremento
+        removeClassActive(itemActive);
         itemActive--;
-
-        // aggiungo la classe active all'elemento precedente
-        items[itemActive].classList.add('active');
-        circles[itemActive].classList.add('active');
+        addClassActive(itemActive);
     }
-})
+});
 
+
+//inizio timing function
+
+setInterval(function(){
+
+    if(itemActive == imagesArray.length - 1)
+    {
+        removeClassActive(itemActive);
+        itemActive = 0;
+        addClassActive(itemActive);
+    }
+    else{
+        removeClassActive(itemActive);
+        itemActive++;
+        addClassActive(itemActive);
+    }
+
+}, 3000)
+
+function removeClassActive(itemActive){
+    items[itemActive].classList.remove('active');
+    circles[itemActive].classList.remove('active');
+}
+
+function addClassActive(itemActive){
+    items[itemActive].classList.add('active');
+    circles[itemActive].classList.add('active');
+}
 
