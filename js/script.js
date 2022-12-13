@@ -43,66 +43,47 @@ const next = document.querySelector('.next');
 const start_btn = document.getElementById('start');
 const stop_btn = document.getElementById('stop');
 
-let loop;
-
-loopImages();
+let loop = setInterval(goToNextSlides, 2000);
 
 start_btn.addEventListener('click', function(){
-    loopImages();
+    loop = setInterval(goToNextSlides, 2000);
 });
-
 
 stop_btn.addEventListener('click', function(){
     clearInterval(loop);
 });
 
+next.addEventListener('click', goToNextSlides);
+
+prev.addEventListener('click', goToPreviousSlides);
+
 //inizio timing function
-function loopImages(){
-    loop = setInterval(function(){
-    
-        if(itemActive == imagesArray.length - 1)
-        {
-            removeClassActive(itemActive);
-            itemActive = 0;
-            addClassActive(itemActive);
-        }
-        else{
-            removeClassActive(itemActive);
-            itemActive++;
-            addClassActive(itemActive);
-        }
-    
-        next.addEventListener('click', function(){
-     
-            if(itemActive == imagesArray.length - 1)
-            {
-                removeClassActive(itemActive);
-                itemActive = 0;
-                addClassActive(itemActive);
-            }
-            else{
-                removeClassActive(itemActive);
-                itemActive++;
-                addClassActive(itemActive);
-            }
-        });
-        
-        prev.addEventListener('click', function(){
-        
-            if(itemActive == 0)
-            {
-                removeClassActive(itemActive);
-                itemActive = imagesArray.length - 1;
-                addClassActive(itemActive);
-            }
-            else{
-                removeClassActive(itemActive);
-                itemActive--;
-                addClassActive(itemActive);
-            }
-        });
-    }, 3000)
-    
+function goToNextSlides(){
+    if(itemActive == imagesArray.length - 1)
+    {
+        removeClassActive(itemActive);
+        itemActive = 0;
+        addClassActive(itemActive);
+    }
+    else{
+        removeClassActive(itemActive);
+        itemActive++;
+        addClassActive(itemActive);
+    }
+}
+
+function goToPreviousSlides(){
+    if(itemActive == 0)
+    {
+        removeClassActive(itemActive);
+        itemActive = imagesArray.length - 1;
+        addClassActive(itemActive);
+    }
+    else{
+        removeClassActive(itemActive);
+        itemActive--;
+        addClassActive(itemActive);
+    }
 }
 
 function removeClassActive(itemActive){
